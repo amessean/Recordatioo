@@ -1,0 +1,15 @@
+<%= render 'shared/navbar' %>
+<div class="container">
+<p>
+  <strong>Title:</strong>
+  <%= @booking.title %>
+</p>
+
+<% if @booking.photos.any? %>
+  <% @booking.photos.each do |photo| %>
+    <%= link_to cl_image_tag(photo.image.url), show_photo_path(photo_id: photo) %>
+  <% end %>
+<% end %>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>

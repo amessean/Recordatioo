@@ -1,0 +1,8 @@
+<%= render 'shared/navbar' %>
+<div class="container">
+  <div class="form-create">
+    <h3>Modifie ton évenement</h3>
+    <%= render "form", booking: @booking %>
+  <%= link_to "Retour", bookings_path %>
+  </div>
+</div>

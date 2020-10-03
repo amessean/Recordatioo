@@ -1,0 +1,16 @@
+<%= form_for(@booking) do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+    <%= f.label :photos %><br>
+    <%= f.file_field :photos, multiple: true %>
+<div>
+    <% if @booking.photos.any? %>
+      <% @booking.photos.each do |photo| %>
+        <%= check_box_tag photo.id, "delete" %>
+        <%= cl_image_tag(photo.image.url) %>
+        <br />
+      <% end %>
+    <% end %>
+  </div>
+    <%= f.submit %>
+<% end %>
