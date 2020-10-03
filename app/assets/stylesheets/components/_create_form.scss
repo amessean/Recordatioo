@@ -1,0 +1,25 @@
+.event-btn {
+  padding: 5px;
+  width: 200px;
+  color: white;
+  background-color: $gray;
+  text-align: center;
+  margin-top: 30px;
+  a {
+    display: block;
+    width: 100%;
+  }
+}
+
+.event-btn:hover {
+  background-color: $white;
+  cursor: pointer;
+  a {
+    color: $white !important;
+  }
+}
+
+
+#start_date {
+  background-color: $white;
+}
