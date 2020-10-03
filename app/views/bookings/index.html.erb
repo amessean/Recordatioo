@@ -1,6 +1,6 @@
 <%= render 'shared/navbar' %>
 <div class="container">
-  <h1>Mes événements</h1>
+  <h1>My events</h1>
     <% @bookings.each do |booking| %>
         <%= link_to booking.title, booking_path(booking) %>
         <%= booking.category %>

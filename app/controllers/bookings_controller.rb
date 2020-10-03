@@ -3,8 +3,8 @@ class BookingsController < ApplicationController
 
     def index
       @bookings = Booking.all.where(user: current_user)
-      # @future_bookings = @bookings.select {|booking| booking.start_time.utc > Date.today}
-      # @previous_bookings = @bookings.reject {|booking| booking.start_time.utc > Date.today}
+      @future_bookings = @bookings.select {|booking| booking.start_time > Date.today}
+      @previous_bookings = @bookings.reject {|booking| booking.start_time > Date.today}
     end
 
     def show
@@ -60,7 +60,7 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-      params.require(:booking).permit(:title, :category, :place, :user_id)
+      params.require(:booking).permit(:title, :category, :place, :user_id, :start_time, :end_time)
     end
 
     def store_photos
