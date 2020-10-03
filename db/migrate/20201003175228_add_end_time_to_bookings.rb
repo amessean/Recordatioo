@@ -1,4 +1,4 @@
-class AddStartTimeToBookings < ActiveRecord::Migration[6.0]
+class AddEndTimeToBookings < ActiveRecord::Migration[6.0]
   def change
     add_column :bookings, :start_time, :datetime
   end
