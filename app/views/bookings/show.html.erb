@@ -1,9 +1,11 @@
 <%= render 'shared/navbar' %>
 <div class="container">
-<p>
   <strong>Title:</strong>
   <%= @booking.title %>
-</p>
+  <%= @booking.category %>
+  <%= @booking.place %>
+  <%= @booking.start_time.strftime("%d-%m %H:%M") %>
+  <%= @booking.end_time.strftime("%d-%m %H:%M") %>
 
 <% if @booking.photos.any? %>
   <% @booking.photos.each do |photo| %>

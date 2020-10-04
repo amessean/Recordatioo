@@ -1,16 +1,33 @@
 <%= render 'shared/navbar' %>
 <div class="container">
-  <h1>My events</h1>
-    <% @bookings.each do |booking| %>
+  <h2>My events</h2>
+    <% if @future_bookings %>
+      <% @future_bookings.each do |booking| %>
+          <%= link_to booking.title, booking_path(booking) %>
+          <%= booking.category %>
+          <%= booking.place %>
+          <%= link_to edit_booking_path(booking) do %>
+              <i class="fas fa-edit"></i>
+          <% end %>
+          <%= link_to booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fas fa-trash"></i>
+          <% end %>
+      <% end %>
+    <% end %>
+
+  <h2>My past events</h2>
+    <% if @previous_bookings %>
+      <% @previous_bookings.each do |booking| %>
         <%= link_to booking.title, booking_path(booking) %>
         <%= booking.category %>
         <%= booking.place %>
         <%= link_to edit_booking_path(booking) do %>
             <i class="fas fa-edit"></i>
         <% end %>
-        <%= link_to booking_path(booking), method: :delete, data: { confirm: "Êtes-vous sûr?" } do %>
+        <%= link_to booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } do %>
             <i class="fas fa-trash"></i>
         <% end %>
+      <% end %>
     <% end %>
 </div>
 

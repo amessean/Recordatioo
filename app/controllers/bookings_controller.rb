@@ -2,9 +2,25 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy, :show_photo]
 
     def index
-      @bookings = Booking.all.where(user: current_user)
-      @future_bookings = @bookings.select {|booking| booking.start_time > Date.today}
-      @previous_bookings = @bookings.reject {|booking| booking.start_time > Date.today}
+      if params[:query].present?
+        sql_query = " \
+          bookings.title ILIKE :query \
+          OR bookings.category ILIKE :query \
+          OR bookings.place ILIKE :query \
+        "
+        if @bookings
+          @future_bookings = @bookings.select {|booking| booking.start_time > Date.today}
+          @future_bookings = Booking.where(sql_query, query: "%#{params[:query]}%")
+          @previous_bookings = @bookings.reject {|booking| booking.start_time > Date.today}
+          @previous_bookings = Booking.where(sql_query, query: "%#{params[:query]}%")
+        else
+          @bookings = Booking.all.where(user: current_user)
+        end
+      else
+        @bookings = Booking.all.where(user: current_user)
+        @future_bookings = @bookings.select {|booking| booking.start_time > Date.today}
+        @previous_bookings = @bookings.reject {|booking| booking.start_time > Date.today}
+      end
     end
 
     def show
