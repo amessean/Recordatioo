@@ -3,21 +3,29 @@
   <h2>My events</h2>
     <% if @future_bookings %>
       <% @future_bookings.each do |booking| %>
-        <% if booking.photos.present? %>
-          <%= image_tag(booking.photo, :alt => "photo") %>
-        <% else %>
-          <%= image_tag("#{booking.category}.jpg", :alt => "photo") %>
-        <% end %>
-          <%= booking.title %>
-          <%= booking.category %>
-          <%= booking.place %>
-          <%= link_to edit_booking_path(booking) do %>
+        <div class="card_booking">
+          <% if booking.photos.present? %>
+            <%= image_tag(booking.photo, size: "300x300", :alt => "photo") %>
+          <% else %>
+            <%= image_tag("#{booking.category}.jpg", size: "300x300", :alt => "photo") %>
+          <% end %>
+          <div class="card_booking_infos">
+            <div>
+              <h3><%= booking.title %></h3>
+              <p><%= booking.category %></p>
+              <p><%= booking.place %></p>
+            </div>
+            <div>
+             <%= link_to edit_booking_path(booking) do %>
               <i class="fas fa-edit"></i>
-          <% end %>
-          <%= link_to booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } do %>
+             <% end %>
+             <%= link_to booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } do %>
               <i class="fas fa-trash"></i>
-          <% end %>
-      <% end %>
+             <% end %>
+            </div>
+          </div>
+        </div>
+       <% end %>
     <% end %>
 
   <h2>My past events</h2>
