@@ -9,7 +9,11 @@
 
 <% if @booking.photos.any? %>
   <% @booking.photos.each do |photo| %>
-    <%= link_to cl_image_tag(photo.image.url), show_photo_path(photo_id: photo) %>
+    <% if photo.image.resource_type == "image" %>
+      <%= link_to cl_image_tag(photo.image.url, width: 150, height: 100, crop: :fill), show_photo_path(photo_id: photo) %>
+    <% else %>
+      <%= link_to cl_video_tag(photo.image.url.delete_suffix(".mov"), width: 150, height: 100, crop: :fill, :controls => true), show_photo_path(photo_id: photo) %>
+    <% end %>
   <% end %>
 <% end %>
 
