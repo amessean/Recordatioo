@@ -3,13 +3,13 @@
   <h2>My events</h2>
     <% if @future_bookings %>
       <% @future_bookings.each do |booking| %>
-        <div class="card_booking">
+        <div class="card-booking">
           <% if booking.photos.present? %>
-            <%= image_tag(booking.photo, size: "300x300", :alt => "photo") %>
+            <%= link_to (image_tag(booking.photos[0].image.url, size: "300x300", :alt => "photo")), booking_path(booking.id)  %>
           <% else %>
-            <%= image_tag("#{booking.category}.jpg", size: "300x300", :alt => "photo") %>
+            <%= link_to (image_tag("#{booking.category}.jpg", size: "300x300", :alt => "photo")), booking_path(booking.id) %>
           <% end %>
-          <div class="card_booking_infos">
+          <div class="card-booking-infos">
             <div>
               <h3><%= booking.title %></h3>
               <p><%= booking.category %></p>
@@ -31,20 +31,28 @@
   <h2>My past events</h2>
     <% if @previous_bookings %>
       <% @previous_bookings.each do |booking| %>
+        <div class="card-booking">
         <% if booking.photos.present? %>
-            <%= image_tag(booking.photo, :alt => "photo") %>
+            <%= link_to (image_tag(booking.photos[0].image.url, size: "300x300", :alt => "photo")), booking_path(booking.id)  %>
           <% else %>
-            <%= image_tag("#{booking.category}.jpg", :alt => "photo") %>
+            <%= link_to (image_tag("#{booking.category}.jpg", size: "300x300", :alt => "photo")), booking_path(booking.id) %>
         <% end %>
-          <%= booking.title %>
-          <%= booking.category %>
-          <%= booking.place %>
-          <%= link_to edit_booking_path(booking) do %>
-            <i class="fas fa-edit"></i>
-        <% end %>
-        <%= link_to booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } do %>
-            <i class="fas fa-trash"></i>
-        <% end %>
+        <div class="card-booking-infos">
+          <div>
+            <%= booking.title %>
+            <%= booking.category %>
+            <%= booking.place %>
+          </div>
+          <div>
+            <%= link_to edit_booking_path(booking) do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= link_to booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
+          </div>
+        </div>
+        </div>
       <% end %>
     <% end %>
 </div>
