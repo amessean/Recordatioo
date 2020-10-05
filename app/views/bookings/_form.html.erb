@@ -1,13 +1,19 @@
-<%= form_for(@booking) do |f| %>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %><br>
-    <%= f.label :photos %><br>
-    <%= f.file_field :photos, multiple: true %>
+<%= simple_form_for @booking do |f| %>
+          <%= f.input :title, placeholder: "Title" %>
+          <%= f.input :category, collection: Booking::CATEGORY, :prompt => "Category" %>
+          <%= f.input :place, placeholder: "Place" %>
+          <%= f.input :start_time, as: :string, required: false, input_html: {id: "start_date"} %>
+          <%= f.input :end_time, as: :string, required: false, input_html: {id: "end_date"} %>
+          <%= f.file_field :photos, multiple: true %>
 <div>
     <% if @booking.photos.any? %>
       <% @booking.photos.each do |photo| %>
         <%= check_box_tag photo.id, "delete" %>
-        <%= cl_image_tag(photo.image.url) %>
+        <% if photo.image.resource_type == "image" %>
+        <%= cl_image_tag(photo.image.url, width: 150, height: 100, crop: :fill) %>
+        <% else %>
+        <%= cl_video_tag(photo.image.url.delete_suffix(".mov"), width: 150, height: 100, crop: :fill, :controls => true) %>
+        <% end %>
         <br />
       <% end %>
     <% end %>
