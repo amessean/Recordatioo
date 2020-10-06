@@ -1,13 +1,12 @@
-<h2>OmniContacts Example</h2>
-
-<a href="/contacts/gmail">Gmail</a>
-<a href="/contacts/yahoo">Yahoo</a>
-<a href="/contacts/hotmail">HotMail</a>
+<h2>Your contacts from Gmail</h2>
 
 <% if !@contacts.nil?%>
-  <% @contacts.each do |c|%>
+  <% @contacts.each do |contact|%>
   <ul>
-    <li><%= c[:name]%> :  <%= c[:email]%></li>
+    <li><%= contact.name%> :  <%= contact.email %> / <%= contact.phone_number%></li>
+    <%= link_to contact_path(contact), method: :delete do %>
+              <i class="fas fa-trash"></i>
+              <%end%>
   </ul>
   <%end%>
 <%end%>
