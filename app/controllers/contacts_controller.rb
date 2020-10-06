@@ -52,7 +52,7 @@ private
   end
 
   def booking_params
-    params.require(:contact).permit(:name, :email, :phone_number, :user_id)
+    params.require(:contact).permit(:name, :email, :phone_number, :user_id, :picture)
   end
 
 
