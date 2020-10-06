@@ -1,9 +1,13 @@
-<h2>Your contacts from Gmail</h2>
+<h2>Your contacts</h2>
+<%= link_to "If you want to import your contacts from Gmail, use this link", "http://localhost:3000/contacts/gmail" %>
 
 <% if !@contacts.nil?%>
   <% @contacts.each do |contact|%>
   <ul>
     <li><%= contact.name%> :  <%= contact.email %> / <%= contact.phone_number%></li>
+    <%= link_to edit_contact_path(contact) do %>
+              <i class="fas fa-edit"></i>
+             <% end %>
     <%= link_to contact_path(contact), method: :delete do %>
               <i class="fas fa-trash"></i>
               <%end%>
