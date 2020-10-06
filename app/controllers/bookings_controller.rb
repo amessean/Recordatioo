@@ -76,7 +76,7 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-      params.require(:booking).permit(:title, :category, :place, :user_id, :start_time, :end_time, :guests)
+      params.require(:booking).permit(:title, :category, :place, :user_id, :start_time, :end_time, :guest)
     end
 
     def store_photos
