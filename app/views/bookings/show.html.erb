@@ -6,6 +6,9 @@
   <%= @booking.place %>
   <%= @booking.start_time.strftime("%d-%m %H:%M") %>
   <%= @booking.end_time.strftime("%d-%m %H:%M") %>
+  <% @booking.guest.each do |c| %>
+  <%= c %>
+  <% end %>
 
 <% if @booking.photos.any? %>
   <% @booking.photos.each do |photo| %>

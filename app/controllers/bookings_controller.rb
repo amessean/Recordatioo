@@ -37,8 +37,6 @@ class BookingsController < ApplicationController
     def create
       @booking = Booking.new(booking_params)
       @booking.user = current_user
-      # @contacts = Contact.all
-      @booking.user = current_user
       respond_to do |format|
         if @booking.save
           store_photos
@@ -78,7 +76,7 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-      params.require(:booking).permit(:title, :category, :place, :user_id, :start_time, :end_time, :guest)
+      params.require(:booking).permit(:title, :category, :place, :user_id, :start_time, :end_time, :guest => [])
     end
 
     def store_photos
