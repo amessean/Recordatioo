@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root to:"pages#home"
   resources :bookings
     get 'bookings/:id/show_photo' => 'bookings#show_photo', as: 'show_photo'
+  resources :contacts
 end

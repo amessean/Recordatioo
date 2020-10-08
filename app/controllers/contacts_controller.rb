@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
 
 
-  def index
+  def index_callback
     @contacts = request.env['omnicontacts.contacts']
     @user = request.env['omnicontacts.user']
     respond_to do |format|
