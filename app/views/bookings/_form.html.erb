@@ -1,4 +1,4 @@
-<%= simple_form_for @booking do |f| %>
+<%= simple_form_for([ @booking ]) do |f| %>
           <%= f.input :title, placeholder: "Title" %>
           <%= f.input :category, collection: Booking::CATEGORY, :prompt => "Category" %>
           <%= f.input :place, placeholder: "Place" %>

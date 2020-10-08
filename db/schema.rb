@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 2020_10_08_123309) do
     t.integer "user_id"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.string "guest", default: [], array: true
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.string "name"
+    t.string "email"
+    t.string "phone_number"
+    t.string "picture"
   end
 
   create_table "contacts", force: :cascade do |t|
