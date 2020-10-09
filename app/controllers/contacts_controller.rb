@@ -45,13 +45,18 @@ class ContactsController < ApplicationController
     redirect_to contacts_path
   end
 
+  def destroy_all
+    @contacts.destroy
+    redirect_to contacts_path
+  end
+
 private
 
   def set_contact
     @contact = Contact.find(params[:id])
   end
 
-  def booking_params
+  def contact_params
     params.require(:contact).permit(:name, :email, :phone_number, :user_id, :picture)
   end
 

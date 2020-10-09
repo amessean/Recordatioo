@@ -1,6 +1,7 @@
 <h2>Your contacts</h2>
 <%= link_to "If you want to import your contacts from Gmail, use this link", "https://recordatio.herokuapp.com/contacts/gmail" %>
 <%= link_to "If you want to import your contacts from Gmail(local), use this link", "http://localhost:3000/contacts/gmail" %>
+<%= link_to "Add a new contact", new_contact_path %>
 <% if !@contacts.nil?%>
   <% @contacts.each do |contact|%>
   <ul>
@@ -14,3 +15,5 @@
   </ul>
   <%end%>
 <%end%>
+
+<%= link_to "Back", bookings_path %>
