@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  get "/contacts/:provider/contact_callback" => "contacts#index"
+  get "/contacts/:provider/contact_callback" => "contacts#contact_callback"
   get "/contacts/failure" => "contacts#failure"
   root to:"pages#home"
   resources :bookings
